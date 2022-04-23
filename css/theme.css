@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+html 
+    {
+    --anim-time: 5s
+  }
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 100vh;
+}
+.timer{
+    position: relative;
+}
+
+.timer__wrapper{
+    min-height: 100px;
+    min-width: 100px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #0000007a;
+}
+
+.timer__counter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: Tahoma; 
+}
+
+.timer__half-circle{
+    position: absolute;
+    min-height: 100px;
+    min-width: 100px;
+    border: 50px solid #2EE59D;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 50%;
+    animation-duration: var(--anim-time) !important;
+}
+
+.animate.timer__half-circle{
+    animation-name: infiniteRotation;
+    animation-duration: infinite;
+    animation-timing-function: linear;
+}
+
+.timer-control{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-direction: column;
+}
+
+input[type="number"] {
+    border: 1px solid #cccccc;
+    border-radius: 3px; 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px; 
+    background: #ffffff !important;
+    outline: none; 
+    height: 24px; 
+    width: 120px; 
+    color: #cccccc; 
+    font-family: Tahoma; 
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.timer-input{
+    text-align: center;
+    max-width: 50px;
+    font-size: 16px;
+}
+
+.timer-start {
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    margin: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+    border: 0;
+  }
+  .timer-start:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
+    cursor: pointer;
+  }
+
+.timer__half-mask{
+    position: absolute;
+    min-height: 100px;
+    min-width: 100px;
+    border: 50px solid white;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 50%;
+    animation-duration: var(--anim-time) !important;
+}
+
+.animate.timer__half-mask{
+    animation: replaceMask steps(1, end);
+    /* animation-duration: 2s; */
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    min-width: 100%;
+}
+footer p::after{
+    transform: translate(0, 16px);
+    content: 'by dem1dov1van';
+    display: block;
+}
+
+@keyframes replaceMask {
+    0%{
+        transform: rotate(0);
+        border-color: white;
+    }
+    
+    50%{
+        transform: rotate(180deg);
+        border-color: #2EE59D;
+    }
+
+    100%{
+        transform: rotate(180deg);
+        border-color: #2EE59D;
+    }
+}
+
+@keyframes infiniteRotation {
+    from{
+        transform: rotate(0);
+    }   
+
+    to{
+        transform: rotate(360deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
